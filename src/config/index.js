@@ -14,5 +14,7 @@ module.exports = {
   host: process.env.HOST,
   basePath: process.env.BASE_PATH,
   mongoUri: process.env.MONGO_URI,
+  financeServiceUrl: process.env.FINANCE_SERVICE_URL,
+  financeServiceToken: process.env.FINANCE_SERVICE_TOKEN,
   pkg,
 };
