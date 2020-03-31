@@ -16,5 +16,5 @@ module.exports = {
   mongoUri: process.env.MONGO_URI,
   financeServiceUrl: process.env.FINANCE_SERVICE_URL,
   financeServiceToken: process.env.FINANCE_SERVICE_TOKEN,
-  pkg,
+  pkg
 };

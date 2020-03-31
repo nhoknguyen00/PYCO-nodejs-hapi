@@ -1,31 +1,30 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose'
+import debug from './utils/debug.utils'
+import config from './config'
+import moment from 'moment'
 
-const config = require('./config');
+const NAMESPACE = `DATABASE-${moment.utc().toISOString()}`
 
-const connect = () => {
+export const connect = () => {
   mongoose.Promise = global.Promise;
 
   mongoose.connect(config.mongoUri, {
+    useCreateIndex: true,
     useNewUrlParser: true,
+    useUnifiedTopology: true,
     reconnectTries: Number.MAX_VALUE,
     reconnectInterval: 1000,
     poolSize: 10
   }, err => {
     if (err) {
-      console.error('ERROR: An error happened whilst connecting to mongodb', {
-        err
-      });
-    } else {
-      console.info('INFO: Connect to mongodb successfully.');
+      debug.error(NAMESPACE, 'ERROR: An error happened whilst connecting to mongodb', err);
+    }
+    else {
+      debug.log(NAMESPACE, 'INFO: Connect to mongodb successfully.');
     }
   });
 };
 
-const disconnect = done => {
+export const disconnect = done => {
   mongoose.disconnect(done);
-};
-
-module.exports = {
-  connect,
-  disconnect
 };
