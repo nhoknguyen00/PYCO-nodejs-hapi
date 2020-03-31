@@ -15,6 +15,20 @@ const userRoute = [
       }
     },
     handler: userController.registerUser
+  },
+  {
+    method: 'POST',
+    path: '/user/login',
+    config: {
+      tags: ['api'],
+      description: 'login user',
+      plugins: {
+        'hapi-swagger': {
+          responses: basicResponse
+        }
+      }
+    },
+    handler: userController.loginUser
   }
 ]
 

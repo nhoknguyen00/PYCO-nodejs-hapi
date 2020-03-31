@@ -30,22 +30,31 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-const Model = mongoose.model('Users', userSchema);
+userSchema.methods.validPassword = function (password) {
+  return crypt.comparePassword(password, this.password)
+}
+
+const Model = mongoose.model('users', userSchema);
 
 const list = () => Model.find();
 
-const create = async (User) => {
-  User.password = crypt.hashPassword(User.password)
-  const userInstance = new Model({ ...User })
+const create = async (userInfo) => {
+  userInfo.password = crypt.hashPassword(userInfo.password)
+
+  const userInstance = new Model({
+    _id: new mongoose.Types.ObjectId(),
+    ...userInfo
+  })
   userInstance.save((err) => {
     if (err) {
       throw err
     }
   })
+
   return userInstance
 };
 
-const findByName = name => Model.findOne({ name });
+const findByEmail = email => Model.findOne({ email });
 
 const deleteById = id => Model.findByIdAndDelete(mongoose.Types.ObjectId(id));
 
@@ -53,7 +62,7 @@ export default {
   Model,
   list,
   create,
-  findByName,
+  findByEmail,
   deleteById,
   schema: userSchema
 };
