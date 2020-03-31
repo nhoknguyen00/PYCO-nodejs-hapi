@@ -12,15 +12,15 @@ module.exports = [
       basePath: config.basePath,
       info: {
         title: config.pkg.name,
-        version: config.pkg.version,
+        version: config.pkg.version
       },
       securityDefinitions: {
         jwt: {
           type: 'apiKey',
           name: 'Authorization',
-          in: 'header',
-        },
-      },
-    },
+          in: 'header'
+        }
+      }
+    }
   }
 ];

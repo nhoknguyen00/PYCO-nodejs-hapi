@@ -13,7 +13,8 @@ const request = async (config = {}) => {
   try {
     const { data } = await axios(prepareConfig(config));
     return data;
-  } catch (error) {
+  }
+  catch (error) {
     throw error;
   }
 };

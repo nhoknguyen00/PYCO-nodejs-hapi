@@ -16,5 +16,8 @@ module.exports = {
   mongoUri: process.env.MONGO_URI,
   financeServiceUrl: process.env.FINANCE_SERVICE_URL,
   financeServiceToken: process.env.FINANCE_SERVICE_TOKEN,
+  SALT_ROUNDS: process.env.SALT_ROUNDS,
+  JWT_SECRET: process.env.JWT_SECRET,
+  TOKEN_EXPIRED_TIME: process.env.TOKEN_EXPIRED_TIME,
   pkg
 };

@@ -1,11 +1,13 @@
-const healthCheckRoute = require('./healthcheck.route');
-const collectionNameRoute = require('./collectionname.route');
-const financeRoute = require('./finance.route')
+// import * as healthCheckRoute from './healthcheck.route'
+// import * as collectionNameRoute from './collectionname.route'
+// import * as financeRoute from './finance.route'
+import userRoute from './user.route'
 
 const routes = [
-  ...healthCheckRoute,
-  ...collectionNameRoute,
-  ...financeRoute
+  // ...healthCheckRoute,
+  // ...collectionNameRoute,
+  // ...financeRoute,
+  ...userRoute
 ];
 
-module.exports = routes;
+export default routes;
