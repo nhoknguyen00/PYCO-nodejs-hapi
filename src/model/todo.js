@@ -1,4 +1,4 @@
-import mongoose, { models } from 'mongoose'
+import mongoose from 'mongoose'
 
 const todoSchema = new mongoose.Schema(
   {
@@ -29,11 +29,15 @@ const todoSchema = new mongoose.Schema(
   }
 )
 
-const Model = mongoose.model('Todo', todoSchema);
+const Model = mongoose.model('Todo', todoSchema)
 
-const getById = (id) => Model.findOne({ _id: id, isDeleted: false });
+const getTodoOfUserById = (id, userId) => Model.findOne({
+  _id: id,
+  user: userId,
+  isDeleted: false
+})
 
-const list = () => Model.find({ isDeleted: false });
+const list = () => Model.find({ isDeleted: false })
 
 const listByUserId = (userId) => Model.find({ user: userId, isDeleted: false });
 
@@ -77,13 +81,18 @@ const deleteTodo = async (todoInstance) => {
   return todoInstance
 }
 
+const deleteAllTodoOfUser = async (userId) => {
+  return await Model.updateMany({ user: userId }, { isDeleted: true });
+}
+
 export default {
   Model,
-  getById,
+  getTodoOfUserById,
   list,
   listByUserId,
   createByUserId,
   updateTodo,
   deleteTodo,
+  deleteAllTodoOfUser,
   schema: todoSchema
 };

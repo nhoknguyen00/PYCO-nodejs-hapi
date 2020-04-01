@@ -7,70 +7,84 @@ const todoRoute = [
     path: '/todo/{todoId}',
     config: {
       tags: ['api'],
-      description: 'get todo list by todoId',
+      description: 'get todo of user by todoId',
       plugins: {
         'hapi-swagger': {
           responses: basicResponse
         }
       }
     },
-    handler: todoController.getTodoByTodoId
+    handler: todoController.getTodoOfUserByTodoId
   },
   {
     method: 'GET',
     path: '/todo',
     config: {
       tags: ['api'],
-      description: 'get all todo',
+      description: 'get all todo of user',
       plugins: {
         'hapi-swagger': {
           responses: basicResponse
         }
       }
     },
-    handler: todoController.getAllTodo
+    handler: todoController.getAllTodoOfUser
   },
   {
     method: 'POST',
     path: '/todo',
     config: {
       tags: ['api'],
-      description: 'create todo by userId',
+      description: 'create todo of user by userId',
       plugins: {
         'hapi-swagger': {
           responses: basicResponse
         }
       }
     },
-    handler: todoController.createTodo
+    handler: todoController.createTodoOfUser
   },
   {
     method: 'PUT',
     path: '/todo/{todoId}',
     config: {
       tags: ['api'],
-      description: 'update todo by todoId',
+      description: 'update todo of user by todoId',
       plugins: {
         'hapi-swagger': {
           responses: basicResponse
         }
       }
     },
-    handler: todoController.updateTodoByTodoId
+    handler: todoController.updateTodoOfUserByTodoId
   },
   {
     method: 'DELETE',
     path: '/todo/{todoId}',
     config: {
       tags: ['api'],
-      description: 'delete todo by todoId',
+      description: 'delete todo of user by todoId',
       plugins: {
         'hapi-swagger': {
           responses: basicResponse
         }
       }
     },
-    handler: todoController.deleteTodoByTodoId
+    handler: todoController.deleteTodoOfUserByTodoId
+  },
+  {
+    method: 'DELETE',
+    path: '/todo',
+    config: {
+      tags: ['api'],
+      description: 'delete all todo of user',
+      plugins: {
+        'hapi-swagger': {
+          responses: basicResponse
+        }
+      }
+    },
+    handler: todoController.deleteAllTodoOfUser
   }
 ]
 
