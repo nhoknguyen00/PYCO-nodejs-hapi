@@ -12,6 +12,7 @@ export const connect = () => {
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useFindAndModify: true,
     reconnectTries: Number.MAX_VALUE,
     reconnectInterval: 1000,
     poolSize: 10

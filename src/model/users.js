@@ -34,9 +34,11 @@ userSchema.methods.validPassword = function (password) {
   return crypt.comparePassword(password, this.password)
 }
 
-const Model = mongoose.model('users', userSchema);
+const Model = mongoose.model('User', userSchema);
 
-const list = () => Model.find();
+const list = () => Model.find({ isDeleted: false });
+
+const findById = (userId) => Model.findOne({ _id: userId, isDeleted: false });
 
 const create = async (userInfo) => {
   userInfo.password = crypt.hashPassword(userInfo.password)
@@ -54,15 +56,46 @@ const create = async (userInfo) => {
   return userInstance
 };
 
-const findByEmail = email => Model.findOne({ email });
+const findByEmail = email => Model.findOne({ email, isDeleted: false });
 
-const deleteById = id => Model.findByIdAndDelete(mongoose.Types.ObjectId(id));
+const updateUser = (userInstance, newEmail, newName) => {
+  userInstance.email = newEmail
+  userInstance.name = newName
+  userInstance.updatedAt = new Date()
+
+  userInstance.save((err) => {
+    if (err) {
+      return err
+    }
+  })
+
+  return userInstance
+}
+
+const deleteUser = (userInstance) => {
+  userInstance.isDeleted = true
+  userInstance.updatedAt = new Date()
+
+  userInstance.save((err) => {
+    if (err) {
+      throw err
+    }
+  })
+  return userInstance
+}
+
+const deleteAllUsers = async () => {
+  return await Model.updateMany({}, { isDeleted: true });
+}
 
 export default {
   Model,
   list,
-  create,
+  findById,
   findByEmail,
-  deleteById,
+  create,
+  updateUser,
+  deleteUser,
+  deleteAllUsers,
   schema: userSchema
 };

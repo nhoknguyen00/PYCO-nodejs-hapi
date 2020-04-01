@@ -3,6 +3,34 @@ import basicResponse from './../response'
 
 const userRoute = [
   {
+    method: 'GET',
+    path: '/user',
+    config: {
+      tags: ['api'],
+      description: 'get all user',
+      plugins: {
+        'hapi-swagger': {
+          responses: basicResponse
+        }
+      }
+    },
+    handler: userController.getAllUser
+  },
+  {
+    method: 'GET',
+    path: '/user/{userId}',
+    config: {
+      tags: ['api'],
+      description: 'get user by userId',
+      plugins: {
+        'hapi-swagger': {
+          responses: basicResponse
+        }
+      }
+    },
+    handler: userController.getUserByUserId
+  },
+  {
     method: 'POST',
     path: '/user',
     config: {
@@ -29,6 +57,48 @@ const userRoute = [
       }
     },
     handler: userController.loginUser
+  },
+  {
+    method: 'PUT',
+    path: '/user/{userId}',
+    config: {
+      tags: ['api'],
+      description: 'update user by userId',
+      plugins: {
+        'hapi-swagger': {
+          responses: basicResponse
+        }
+      }
+    },
+    handler: userController.updateUserByUserId
+  },
+  {
+    method: 'DELETE',
+    path: '/user',
+    config: {
+      tags: ['api'],
+      description: 'delete all users',
+      plugins: {
+        'hapi-swagger': {
+          responses: basicResponse
+        }
+      }
+    },
+    handler: userController.deleteAllUsers
+  },
+  {
+    method: 'DELETE',
+    path: '/user/{userId}',
+    config: {
+      tags: ['api'],
+      description: 'delete user by userId',
+      plugins: {
+        'hapi-swagger': {
+          responses: basicResponse
+        }
+      }
+    },
+    handler: userController.deleteUserByUserId
   }
 ]
 
