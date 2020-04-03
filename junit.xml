@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="1" failures="0" time="2.523">
+  <testsuite name="Unit test all ultilities" errors="0" failures="0" skipped="0" timestamp="2020-04-03T11:01:46" time="2.146" tests="1">
+    <testcase classname="Unit test all ultilities Test create authorization token: " name="Unit test all ultilities Test create authorization token: " time="0.005">
+    </testcase>
+  </testsuite>
+</testsuites>

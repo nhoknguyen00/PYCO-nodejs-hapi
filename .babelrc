@@ -1,5 +1,22 @@
 {
-    "presets": ["es2015"],
+    "env": {
+      "test": {
+        "plugins": ["@babel/plugin-transform-modules-commonjs"]
+      }
+    },
+    "presets": [
+      "es2015",
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "chrome":50,
+            "node": "current"
+          }
+        }
+      ],
+      "@babel/preset-react"
+    ],
     "plugins": [
       "transform-flow-strip-types",
       "add-module-exports",
@@ -11,6 +28,8 @@
       "transform-class-properties",
       "transform-export-extensions",
       "transform-runtime"
+    ],
+    "test": [
+        "jest"
     ]
   }
-  
