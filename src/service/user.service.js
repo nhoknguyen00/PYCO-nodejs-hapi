@@ -1,4 +1,4 @@
-import userModel from '../model/users'
+import userModel from '../model/user'
 import moment from 'moment'
 import debug from '../utils/debug.utils'
 

@@ -12,34 +12,38 @@ const todoSchema = new mongoose.Schema(
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
+      ref: 'User',
+      required: true
     },
     isDeleted: {
       type: Boolean,
-      default: false
+      default: false,
+      required: true
     },
     createdAt: {
       type: Date,
-      default: Date.now
+      default: Date.now,
+      required: true
     },
     updatedAt: {
       type: Date,
-      default: Date.now
+      default: Date.now,
+      required: true
     }
   }
 )
 
 const Model = mongoose.model('Todo', todoSchema)
 
-const getTodoOfUserById = (id, userId) => Model.findOne({
+const getTodoOfUserById = async (id, userId) => await Model.findOne({
   _id: id,
   user: userId,
   isDeleted: false
 })
 
-const list = () => Model.find({ isDeleted: false })
+const list = async () => await Model.find({ isDeleted: false })
 
-const listByUserId = (userId) => Model.find({ user: userId, isDeleted: false });
+const listByUserId = async (userId) => await Model.find({ user: userId, isDeleted: false });
 
 const createByUserId = async (userId, todoInfo) => {
   const todoInstance = new Model({
@@ -47,7 +51,7 @@ const createByUserId = async (userId, todoInfo) => {
     user: userId
   })
 
-  todoInstance.save((err) => {
+  await todoInstance.save((err) => {
     if (err) {
       throw err
     }
@@ -61,7 +65,7 @@ const updateTodo = async (todoInstance, newSummary, newDescription) => {
   todoInstance.description = newDescription
   todoInstance.updatedAt = new Date()
 
-  todoInstance.save((err) => {
+  await todoInstance.save((err) => {
     if (err) {
       throw err
     }
@@ -73,7 +77,7 @@ const deleteTodo = async (todoInstance) => {
   todoInstance.isDeleted = true
   todoInstance.updatedAt = new Date()
 
-  todoInstance.save((err) => {
+  await todoInstance.save((err) => {
     if (err) {
       throw err
     }

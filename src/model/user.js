@@ -17,15 +17,18 @@ const userSchema = new mongoose.Schema(
     },
     isDeleted: {
       type: Boolean,
-      default: false
+      default: false,
+      required: true
     },
     createdAt: {
       type: Date,
-      default: Date.now
+      default: Date.now,
+      required: true
     },
     updatedAt: {
       type: Date,
-      default: Date.now
+      default: Date.now,
+      required: true
     }
   }
 );
@@ -36,9 +39,12 @@ userSchema.methods.validPassword = function (password) {
 
 const Model = mongoose.model('User', userSchema);
 
-const list = () => Model.find({ isDeleted: false });
+const list = async () => await Model.find({ isDeleted: false });
 
-const findById = (userId) => Model.findOne({ _id: userId, isDeleted: false });
+const findById = async (userId) => await Model.findOne({
+  _id: new mongoose.Types.ObjectId(userId),
+  isDeleted: false
+});
 
 const create = async (userInfo) => {
   userInfo.password = crypt.hashPassword(userInfo.password)
@@ -47,7 +53,8 @@ const create = async (userInfo) => {
     _id: new mongoose.Types.ObjectId(),
     ...userInfo
   })
-  userInstance.save((err) => {
+
+  await userInstance.save((err) => {
     if (err) {
       throw err
     }
@@ -56,14 +63,14 @@ const create = async (userInfo) => {
   return userInstance
 };
 
-const findByEmail = email => Model.findOne({ email, isDeleted: false });
+const findByEmail = async (email) => await Model.findOne({ email, isDeleted: false });
 
-const updateUser = (userInstance, newEmail, newName) => {
+const updateUser = async (userInstance, newEmail, newName) => {
   userInstance.email = newEmail
   userInstance.name = newName
   userInstance.updatedAt = new Date()
 
-  userInstance.save((err) => {
+  await userInstance.save((err) => {
     if (err) {
       return err
     }
@@ -72,11 +79,11 @@ const updateUser = (userInstance, newEmail, newName) => {
   return userInstance
 }
 
-const deleteUser = (userInstance) => {
+const deleteUser = async (userInstance) => {
   userInstance.isDeleted = true
   userInstance.updatedAt = new Date()
 
-  userInstance.save((err) => {
+  await userInstance.save((err) => {
     if (err) {
       throw err
     }

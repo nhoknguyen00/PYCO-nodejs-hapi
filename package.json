@@ -1,7 +1,7 @@
 {
   "name": "pyco-nodejs-hapi",
   "version": "1.0.0",
-  "description": "Luu Tuan Nguyen's nodejs hapi api",
+  "description": "NodeJS Hapi MongoDB API",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon ./src/index.js",
@@ -9,7 +9,7 @@
     "test": "jest",
     "test:coverage": "jest --coverage test"
   },
-  "author": "",
+  "author": "Luu Tuan Nguyen",
   "license": "ISC",
   "dependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.9.0",
@@ -37,6 +37,7 @@
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "sha256": "^0.2.0",
+    "uuid": "^7.0.3",
     "vision": "5.4.4"
   },
   "devDependencies": {
