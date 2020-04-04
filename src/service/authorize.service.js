@@ -1,4 +1,4 @@
-import userModel from '../model/users'
+import userModel from '../model/user'
 import jwt from 'jsonwebtoken'
 import { JWT_SECRET } from '../config/index'
 import moment from 'moment'
