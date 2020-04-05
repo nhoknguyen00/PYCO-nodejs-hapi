@@ -39,7 +39,9 @@ export const createUser = async (email, name, password) => {
 export const findUserByEmail = async (email) => {
   try {
     const userInstance = await userModel.findByEmail(email)
-    delete userInstance.password
+    if (userInstance) {
+      delete userInstance.password
+    }
     return userInstance
   }
   catch (err) {
