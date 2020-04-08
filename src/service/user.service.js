@@ -26,9 +26,7 @@ export const getUserByUserId = async (userId) => {
 
 export const createUser = async (email, name, password) => {
   try {
-    const userInstance = await userModel.create({ email, name, password })
-    delete userInstance.password
-    return userInstance
+    return await userModel.create({ email, name, password })
   }
   catch (err) {
     debug.error(NAMESPACE, '', err)
@@ -38,11 +36,7 @@ export const createUser = async (email, name, password) => {
 
 export const findUserByEmail = async (email) => {
   try {
-    const userInstance = await userModel.findByEmail(email)
-    if (userInstance) {
-      delete userInstance.password
-    }
-    return userInstance
+    return await userModel.findByEmail(email)
   }
   catch (err) {
     debug.error(NAMESPACE, '', err)
@@ -54,9 +48,9 @@ export const authenticate = async (email, password) => {
   try {
     const userInstance = await userModel.findByEmail(email)
     if (userInstance && userInstance.validPassword(password)) {
-      delete userInstance.password
       return userInstance
     }
+    return null
   }
   catch (err) {
     debug.error(NAMESPACE, '', err)

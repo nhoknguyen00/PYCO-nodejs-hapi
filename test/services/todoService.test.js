@@ -1,11 +1,11 @@
-import todoModel from '../../src/model/todo'
-import userModel from '../../src/model/user'
+import * as todoService from '../../src/service/todo.service'
+import * as userService from '../../src/service/user.service'
 import mongoose from 'mongoose'
 import config from '../../src/config/index'
 
 const userData = {
-  email: 'testemail@gmail.com',
-  name: 'test name',
+  email: 'testemailservice@gmail.com',
+  name: 'test name service',
   password: '123456789',
   isDeleted: false,
   createdAt: new Date(),
@@ -36,8 +36,8 @@ const connectMongo = async () => {
 }
 
 const todoData = {
-  summary: 'a test summary',
-  description: 'a test description',
+  summary: 'a test summary service',
+  description: 'a test description service',
   isDeleted: false,
   createdAt: new Date(),
   updatedAt: new Date()
@@ -48,47 +48,32 @@ let testCreatedTodo
 let testUpdatedTodo
 let testDeletedTodo
 
-describe('Create todo by user id test suite', () => {
+describe('Create todo by user id service test suite', () => {
   connectMongo()
 
   test('Test create todo basically', async () => {
-    userInstance = await userModel.create(userData)
-    testCreatedTodo = await todoModel.createByUserId(userInstance._id, todoData)
+    userInstance = await userService.createUser(userData.email, userData.name, userData.password)
+    testCreatedTodo = await todoService.createTodo(userInstance._id, todoData.summary, todoData.description)
     expect(testCreatedTodo._id).toBeDefined()
     expect(testCreatedTodo.summary).toBe(todoData.summary)
     expect(testCreatedTodo.description).toBe(todoData.description)
     expect(testCreatedTodo.user).toBe(userInstance._id)
     expect(testCreatedTodo.isDeleted).toBe(false)
-    expect(testCreatedTodo.createdAt).toBe(todoData.createdAt)
-    expect(testCreatedTodo.updatedAt).toBe(todoData.updatedAt)
   })
-
-  test('Test create todo with undefined fields', async () => {
-    const todoWithInvalidField = await todoModel.createByUserId(userInstance._id, {
-      summary: 'a second test summary',
-      description: 'a second test description',
-      isDeleted: false,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    })
-    expect(todoWithInvalidField._id).toBeDefined()
-    expect(todoWithInvalidField.nickname).toBeUndefined()
-  })
-
 })
 
-describe('Find todo test suite', () => {
+describe('Find todo service test suite', () => {
   connectMongo()
-  test('Test list all todos', async () => {
-    const todoList = await todoModel.list()
+  test('Test get all todos', async () => {
+    const todoList = await todoService.getAllTodo()
     todoList.forEach((todo) => {
       expect(todo._id).toBeDefined()
       expect(todo.isDeleted).toBe(false)
     })
   })
 
-  test('Test list all todos of user', async () => {
-    const todoList = await todoModel.listByUserId(userInstance._id)
+  test('Test get all todos of user', async () => {
+    const todoList = await todoService.getAllTodoByUserId(userInstance._id)
     todoList.forEach((todo) => {
       expect(todo._id).toBeDefined()
       expect(todo.user).toStrictEqual(userInstance._id)
@@ -97,7 +82,7 @@ describe('Find todo test suite', () => {
   })
 
   test('Test find todo of user by id', async () => {
-    const todoInstance = await todoModel.getTodoOfUserById(testCreatedTodo._id, userInstance._id)
+    const todoInstance = await todoService.getTodoOfUserByTodoId(testCreatedTodo._id, userInstance._id)
     expect(todoInstance._id).toBeDefined()
     expect(todoInstance.summary).toBe(testCreatedTodo.summary)
     expect(todoInstance.description).toBe(testCreatedTodo.description)
@@ -107,7 +92,7 @@ describe('Find todo test suite', () => {
 
   test('Test find todo with undefined id', async () => {
     const randomUUID = new mongoose.Types.ObjectId()
-    const todoInstance = await todoModel.getTodoOfUserById(randomUUID, userInstance._id)
+    const todoInstance = await todoService.getTodoOfUserByTodoId(randomUUID, userInstance._id)
     expect(todoInstance).toEqual(null)
   })
 
@@ -116,7 +101,7 @@ describe('Find todo test suite', () => {
 describe('Update todo test suite', () => {
   connectMongo()
   test('Test update todo', async () => {
-    testUpdatedTodo = await todoModel.updateTodo(testCreatedTodo, 'test update summary', 'test update desciption')
+    testUpdatedTodo = await todoService.updateTodo(testCreatedTodo, 'test update summary', 'test update desciption')
     expect(testUpdatedTodo._id).toBeDefined()
     expect(testUpdatedTodo.summary).toBe('test update summary')
     expect(testUpdatedTodo.description).toBe('test update desciption')
@@ -128,7 +113,7 @@ describe('Update todo test suite', () => {
 describe('Delete todo test suite', () => {
   connectMongo()
   test('Test delete todo', async () => {
-    testDeletedTodo = await todoModel.deleteTodo(testUpdatedTodo)
+    testDeletedTodo = await todoService.deleteTodo(testUpdatedTodo)
     expect(testDeletedTodo._id).toBeDefined()
     expect(testDeletedTodo.summary).toBe(testUpdatedTodo.summary)
     expect(testDeletedTodo.description).toBe(testUpdatedTodo.description)

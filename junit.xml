@@ -1,37 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="14" failures="0" time="18.1">
-  <testsuite name="Utilities unit tests" errors="0" failures="0" skipped="0" timestamp="2020-04-04T14:57:34" time="3.636" tests="2">
-    <testcase classname="Utilities unit tests Comparing password" name="Utilities unit tests Comparing password" time="0.173">
+<testsuites name="jest tests" tests="37" failures="0" time="27.858">
+  <testsuite name="Utilities unit tests" errors="0" failures="0" skipped="0" timestamp="2020-04-08T15:18:14" time="6.849" tests="2">
+    <testcase classname="Utilities unit tests Comparing password" name="Utilities unit tests Comparing password" time="0.296">
     </testcase>
-    <testcase classname="Utilities unit tests Test create authorization token" name="Utilities unit tests Test create authorization token" time="0.006">
-    </testcase>
-  </testsuite>
-  <testsuite name="Create todo by user id test suite" errors="0" failures="0" skipped="0" timestamp="2020-04-04T14:57:34" time="8.554" tests="2">
-    <testcase classname="Create todo by user id test suite Test create todo basically" name="Create todo by user id test suite Test create todo basically" time="0.111">
-    </testcase>
-    <testcase classname="Create todo by user id test suite Test create todo with undefined fields" name="Create todo by user id test suite Test create todo with undefined fields" time="0.003">
+    <testcase classname="Utilities unit tests Test create authorization token" name="Utilities unit tests Test create authorization token" time="0.01">
     </testcase>
   </testsuite>
-  <testsuite name="Create user test suite" errors="0" failures="0" skipped="0" timestamp="2020-04-04T14:57:34" time="16.029" tests="10">
-    <testcase classname="Create user test suite Test create user basically" name="Create user test suite Test create user basically" time="0.101">
+  <testsuite name="Create todo by user id service test suite" errors="0" failures="0" skipped="0" timestamp="2020-04-08T15:18:14" time="21.072" tests="7">
+    <testcase classname="Create todo by user id service test suite Test create todo basically" name="Create todo by user id service test suite Test create todo basically" time="0.174">
     </testcase>
-    <testcase classname="Create user test suite Test create user with undefined fields" name="Create user test suite Test create user with undefined fields" time="0.081">
+    <testcase classname="Find todo service test suite Test get all todos" name="Find todo service test suite Test get all todos" time="0.3">
     </testcase>
-    <testcase classname="Create user test suite Test create user without required field" name="Create user test suite Test create user without required field" time="0.064">
+    <testcase classname="Find todo service test suite Test get all todos of user" name="Find todo service test suite Test get all todos of user" time="0.286">
     </testcase>
-    <testcase classname="Find user test suite Test list all user" name="Find user test suite Test list all user" time="0.248">
+    <testcase classname="Find todo service test suite Test find todo of user by id" name="Find todo service test suite Test find todo of user by id" time="1.653">
     </testcase>
-    <testcase classname="Find user test suite Test find user by id" name="Find user test suite Test find user by id" time="0.237">
+    <testcase classname="Find todo service test suite Test find todo with undefined id" name="Find todo service test suite Test find todo with undefined id" time="0.259">
     </testcase>
-    <testcase classname="Find user test suite Test find user with undefined id" name="Find user test suite Test find user with undefined id" time="0.235">
+    <testcase classname="Update todo test suite Test update todo" name="Update todo test suite Test update todo" time="0.005">
     </testcase>
-    <testcase classname="Find user test suite Test find user by email" name="Find user test suite Test find user by email" time="1.418">
+    <testcase classname="Delete todo test suite Test delete todo" name="Delete todo test suite Test delete todo" time="0.005">
     </testcase>
-    <testcase classname="Find user test suite Test find user with undefined email" name="Find user test suite Test find user with undefined email" time="0.238">
+  </testsuite>
+  <testsuite name="Create todo by user id test suite" errors="0" failures="0" skipped="0" timestamp="2020-04-08T15:18:14" time="21.194" tests="8">
+    <testcase classname="Create todo by user id test suite Test create todo basically" name="Create todo by user id test suite Test create todo basically" time="0.19">
     </testcase>
-    <testcase classname="Update user test suite Test update user" name="Update user test suite Test update user" time="0.001">
+    <testcase classname="Create todo by user id test suite Test create todo with undefined fields" name="Create todo by user id test suite Test create todo with undefined fields" time="0.006">
     </testcase>
-    <testcase classname="Delete user test suite Test delete user" name="Delete user test suite Test delete user" time="0.001">
+    <testcase classname="Find todo test suite Test list all todos" name="Find todo test suite Test list all todos" time="0.294">
+    </testcase>
+    <testcase classname="Find todo test suite Test list all todos of user" name="Find todo test suite Test list all todos of user" time="0.28">
+    </testcase>
+    <testcase classname="Find todo test suite Test find todo of user by id" name="Find todo test suite Test find todo of user by id" time="1.881">
+    </testcase>
+    <testcase classname="Find todo test suite Test find todo with undefined id" name="Find todo test suite Test find todo with undefined id" time="0.268">
+    </testcase>
+    <testcase classname="Update todo test suite Test update todo" name="Update todo test suite Test update todo" time="0.01">
+    </testcase>
+    <testcase classname="Delete todo test suite Test delete todo" name="Delete todo test suite Test delete todo" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="Create user test suite" errors="0" failures="0" skipped="0" timestamp="2020-04-08T15:18:14" time="21.457" tests="10">
+    <testcase classname="Create user test suite Test create user basically" name="Create user test suite Test create user basically" time="0.186">
+    </testcase>
+    <testcase classname="Create user test suite Test create user with undefined fields" name="Create user test suite Test create user with undefined fields" time="0.125">
+    </testcase>
+    <testcase classname="Create user test suite Test create user without required field" name="Create user test suite Test create user without required field" time="0.102">
+    </testcase>
+    <testcase classname="Find user test suite Test list all user" name="Find user test suite Test list all user" time="0.282">
+    </testcase>
+    <testcase classname="Find user test suite Test find user by id" name="Find user test suite Test find user by id" time="0.264">
+    </testcase>
+    <testcase classname="Find user test suite Test find user with undefined id" name="Find user test suite Test find user with undefined id" time="1.773">
+    </testcase>
+    <testcase classname="Find user test suite Test find user by email" name="Find user test suite Test find user by email" time="0.258">
+    </testcase>
+    <testcase classname="Find user test suite Test find user with undefined email" name="Find user test suite Test find user with undefined email" time="0.266">
+    </testcase>
+    <testcase classname="Update user test suite Test update user" name="Update user test suite Test update user" time="0.003">
+    </testcase>
+    <testcase classname="Delete user test suite Test delete user" name="Delete user test suite Test delete user" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="Create user service test suite" errors="0" failures="0" skipped="0" timestamp="2020-04-08T15:18:14" time="24.597" tests="10">
+    <testcase classname="Create user service test suite Test create user service" name="Create user service test suite Test create user service" time="0.148">
+    </testcase>
+    <testcase classname="Authorize service test suite Get user with valid token" name="Authorize service test suite Get user with valid token" time="0.355">
+    </testcase>
+    <testcase classname="Authorize service test suite Get user with invalid token" name="Authorize service test suite Get user with invalid token" time="0.272">
+    </testcase>
+    <testcase classname="Get user service test suite Test get all users service" name="Get user service test suite Test get all users service" time="0.275">
+    </testcase>
+    <testcase classname="Get user service test suite Test get user by id" name="Get user service test suite Test get user by id" time="0.256">
+    </testcase>
+    <testcase classname="Get user service test suite Test get user by email" name="Get user service test suite Test get user by email" time="0.257">
+    </testcase>
+    <testcase classname="Authenticate user service test suite Test authenticate service successfully" name="Authenticate user service test suite Test authenticate service successfully" time="0.413">
+    </testcase>
+    <testcase classname="Authenticate user service test suite Test authenticate service fail" name="Authenticate user service test suite Test authenticate service fail" time="0.406">
+    </testcase>
+    <testcase classname="Update user service test suite Test update user service" name="Update user service test suite Test update user service" time="0.004">
+    </testcase>
+    <testcase classname="Delete user service test suite Test delete user service" name="Delete user service test suite Test delete user service" time="0.002">
     </testcase>
   </testsuite>
 </testsuites>

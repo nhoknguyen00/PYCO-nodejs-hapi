@@ -42,7 +42,7 @@ const Model = mongoose.model('User', userSchema);
 const list = async () => await Model.find({ isDeleted: false });
 
 const findById = async (userId) => await Model.findOne({
-  _id: new mongoose.Types.ObjectId(userId),
+  _id: userId,
   isDeleted: false
 });
 
