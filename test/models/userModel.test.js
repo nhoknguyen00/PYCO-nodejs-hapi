@@ -1,29 +1,6 @@
 import userModel from '../../src/model/user'
 import mongoose from 'mongoose'
-import config from '../../src/config/index'
-
-const connectMongo = async () => {
-  let mongoConnection
-  beforeAll(async () => {
-    mongoConnection = await mongoose.connect(config.mongoUri, {
-      useCreateIndex: true,
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useFindAndModify: true
-    }, (err) => {
-      if (err) {
-      // eslint-disable-next-line no-console
-        console.error(err)
-        process.exit(1)
-      }
-    })
-  })
-
-  afterAll(async () => {
-    await mongoConnection.close()
-    process.exit(1)
-  })
-}
+import connectMongo from '../connectMongo'
 
 const userData = {
   email: 'testemail@gmail.com',

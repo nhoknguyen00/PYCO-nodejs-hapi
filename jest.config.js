@@ -18,5 +18,6 @@ module.exports = {
     '^.+\\.[t|j]sx?$': 'babel-jest'
   },
   transformIgnorePatterns: ['<rootDir>/node_modules/'],
-  preset: '@shelf/jest-mongodb'
+  preset: '@shelf/jest-mongodb',
+  setupFilesAfterEnv: ['./jest.setup.js']
 };

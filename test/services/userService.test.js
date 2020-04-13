@@ -1,7 +1,7 @@
 import * as userService from '../../src/service/user.service'
 import * as authorizeService from '../../src/service/authorize.service'
 import mongoose from 'mongoose'
-import config from '../../src/config/index'
+import connectMongo from '../connectMongo'
 import crypt from '../../src/utils/crypt.utils'
 
 const userData = {
@@ -84,29 +84,6 @@ const userData = {
 //   }])
 // }))
 
-const connectMongo = async () => {
-  let mongoConnection
-  beforeAll(async () => {
-    mongoConnection = await mongoose.connect(config.mongoUri, {
-      useCreateIndex: true,
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useFindAndModify: true
-    }, (err) => {
-      if (err) {
-      // eslint-disable-next-line no-console
-        console.error(err)
-        process.exit(1)
-      }
-    })
-  })
-
-  afterAll(async () => {
-    await mongoConnection.close()
-    process.exit(1)
-  })
-}
-
 let testCreatedUser
 let testUpdatedUser
 
@@ -142,7 +119,6 @@ describe('Authorize service test suite', () => {
     expect(userResult).toBe(null)
   })
 })
-
 
 describe('Get user service test suite', () => {
   connectMongo()
